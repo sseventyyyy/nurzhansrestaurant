@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR-Menu | Restaurant by Nurzhan </title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ======= HEADER ======= -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🍽</span>
+        <span class="logo-text">Nurzhan Restaurant</span>
+      </div>
+      <div class="table-badge">
+        <span>Үстел №</span>
+        <strong id="tableNumber">5</strong>
+      </div>
+      <button class="cart-btn" id="cartBtn" onclick="toggleCart()">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ======= HERO ======= -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Қош келдіңіз!</h1>
+      <p>Дәмді тағамдарымызды таңдап, үстелден тапсырыс беріңіз</p>
+    </div>
+  </section>
+
+  <!-- ======= CATEGORIES ======= -->
+  <nav class="categories" id="categories">
+    <button class="cat-btn active" onclick="filterCategory('all')">🍴 Барлығы</button>
+    <button class="cat-btn" onclick="filterCategory('salad')">🥗 Салаттар</button>
+    <button class="cat-btn" onclick="filterCategory('soup')">🍲 Сорпалар</button>
+    <button class="cat-btn" onclick="filterCategory('main')">🥩 Негізгі</button>
+    <button class="cat-btn" onclick="filterCategory('dessert')">🍰 Десерт</button>
+    <button class="cat-btn" onclick="filterCategory('drink')">🥤 Сусындар</button>
+  </nav>
+
+  <!-- ======= MENU GRID ======= -->
+  <main class="menu-grid" id="menuGrid"></main>
+
+  <!-- ======= CART PANEL ======= -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <aside class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <h2>Тапсырысым 🛒</h2>
+      <button class="close-btn" onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="empty-cart">
+        <span>🍽️</span>
+        <p>Себет бос</p>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span>Жалпы сома:</span>
+        <strong id="totalPrice">0 ₸</strong>
+      </div>
+      <div class="cart-note">
+        <label>Ескертпе:</label>
+        <textarea id="orderNote" placeholder="Мысалы: аз тұз, жай піскен..."></textarea>
+      </div>
+      <button class="order-btn" onclick="placeOrder()">Тапсырыс беру</button>
+    </div>
+  </aside>
+
+  <!-- ======= ORDER SUCCESS MODAL ======= -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-icon">✅</div>
+      <h2>Тапсырыс қабылданды!</h2>
+      <p id="modalMsg">Сіздің тапсырысыңыз дайындалып жатыр. Күтіңіз!</p>
+      <div class="modal-order-id">Тапсырыс №: <strong id="orderId"></strong></div>
+      <button class="pay-btn" onclick="showPayment()">💳 Төлем жасау</button>
+    </div>
+  </div>
+
+  <!-- ======= PAYMENT MODAL ======= -->
+  <div class="modal-overlay" id="paymentOverlay">
+    <div class="modal payment-modal">
+      <h2>💳 Төлем</h2>
+      <p class="pay-amount">Төленетін сома: <strong id="payAmount">0 ₸</strong></p>
+      <div class="pay-methods">
+        <button class="pay-method active" onclick="selectPayMethod(this, 'card')">💳 Карта</button>
+        <button class="pay-method" onclick="selectPayMethod(this, 'kaspi')">📱 Kaspi QR</button>
+        <button class="pay-method" onclick="selectPayMethod(this, 'cash')">💵 Қолма-қол</button>
+      </div>
+      <div id="cardForm" class="card-form">
+        <input type="text" placeholder="Карта нөмірі" maxlength="19" id="cardNum" oninput="formatCard(this)" />
+        <div class="card-row">
+          <input type="text" placeholder="MM/YY" maxlength="5" />
+          <input type="text" placeholder="CVV" maxlength="3" />
+        </div>
+        <input type="text" placeholder="Иесінің аты" />
+      </div>
+      <div id="kaspiForm" class="kaspi-form" style="display:none">
+        <div class="qr-placeholder">
+          <div class="qr-fake"></div>
+          <p>Kaspi QR-кодты сканерлеңіз</p>
+        </div>
+      </div>
+      <div id="cashForm" class="cash-form" style="display:none">
+        <p>Даяшыға қолма-қол төлемді растаңыз.</p>
+      </div>
+      <div class="pay-actions">
+        <button class="order-btn" onclick="confirmPayment()">✅ Растау</button>
+        <button class="cancel-btn" onclick="closePayment()">Артқа</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= PAID SUCCESS ======= -->
+  <div class="modal-overlay" id="paidOverlay">
+    <div class="modal">
+      <div class="modal-icon" style="font-size:3rem">🎉</div>
+      <h2>Рахмет!</h2>
+      <p>Төлем сәтті өтті. Дәмді болсын!</p>
+      <button class="order-btn" onclick="resetAll()">Жаңа тапсырыс</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
