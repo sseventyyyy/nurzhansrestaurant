@@ -87,26 +87,27 @@
 
   <!-- ======= PAYMENT MODAL ======= -->
 <div class="modal-overlay" id="paymentOverlay">
-    <div class="modal-content">
-      <div class="modal-close" onclick="closePayment()">✕</div>
-      <h2>Тапсырысты растау</h2>
-      <div class="pay-total">
-        <span>Төленетін сома:</span>
-        <strong id="payAmount">0 ₸</strong>
-      </div>
+    <div class="modal payment-modal">
+      <h2 style="text-align: center; font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 6px;">📱 Төлем Kaspi QR</h2>
+      <p class="pay-amount" style="text-align: center; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+        Төленетін сома: <strong id="payAmount" style="color: var(--accent); font-size: 1.2rem;">0 ₸</strong>
+      </p>
       <div id="cardForm" class="card-form">
         <input type="text" placeholder="Карта нөмірі" maxlength="19" id="cardNum" oninput="formatCard(this)" />
-        <div class="card-row">
-          <input type="text" placeholder="MM/YY" maxlength="5" />
-          <input type="text" placeholder="CVV" maxlength="3" />
-        </div>
+        <div class="pay-actions" style="display: flex; flex-direction: column; gap: 10px;">
+        <button class="order-btn" onclick="confirmPayment()">✅ Төледім / Растау</button>
+        <button class="cancel-btn" onclick="closePayment()">Артқа</button>
+      </div>
+    </div>
+  </div>
         <input type="text" placeholder="Иесінің аты" />
       </div>
-      <div id="kaspiForm" class="kaspi-form" style="display:flex; justify-content:center; margin: 20px 0;">
-        <div class="qr-placeholder" style="text-align: center;">
-          <img id="kaspiQrImage" src="" alt="Kaspi QR" style="width: 160px; height: 160px; border-radius: 10px; border: 3px solid var(--accent); margin-bottom: 12px; display: inline-block;">
-          <p style="color: var(--text-muted); font-size: 0.85rem;">Kaspi QR-кодты сканерлеңіз</p>
+      <div id="kaspiForm" class="kaspi-form" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+        <div class="qr-placeholder" style="text-align: center; padding: 10px;">
+          <img id="kaspiQrImage" src="" alt="Kaspi QR" style="width: 180px; height: 180px; border: 3px solid var(--accent); border-radius: var(--radius-sm); margin: 0 auto 12px; display: block;" />
+          <p style="color: var(--text-muted); font-size: 0.85rem;">Төлем жасау үшін Kaspi қосымшасымен QR-кодты сканерлеңіз</p>
         </div>
+      </div>
       </div>
       <div class="pay-actions">
         <button class="order-btn" onclick="confirmPayment()">✅ Растау</button>
@@ -117,11 +118,11 @@
 
   <!-- ======= PAID SUCCESS ======= -->
 <div class="modal-overlay" id="paidOverlay">
-    <div class="modal-content text-center">
-      <div class="success-icon">💳 ✅</div>
+    <div class="modal">
+      <div class="modal-icon" style="font-size:3.5rem; margin-bottom: 16px;">💳 ✅</div>
       <h2>Төлем сәтті өтті!</h2>
-      <p>Ақшаңыз қабылданды. Тапсырыс асханаға жіберілді, даяшы қазір алып келеді.</p>
-      <button class="order-btn" onclick="resetAll()">Түсінікті</button>
+      <p>Ақшаңыз қабылданды. Тапсырыс автоматты түрде асханаға жіберілді, даяшы қазір алып келеді.</p>
+      <button class="order-btn" onclick="resetAll()">Жаңа тапсырыс</button>
     </div>
   </div>
 

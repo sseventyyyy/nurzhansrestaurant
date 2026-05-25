@@ -226,15 +226,18 @@ function placeOrder() {
 // -------- SHOW PAYMENT --------
 function showPayment() {
   document.getElementById('modalOverlay').classList.remove('active');
+  const totalSum = getTotal();
   
-  const totalAmount = getTotal();
-  document.getElementById('payAmount').textContent = formatPrice(totalAmount) + ' ₸';
+  // Выводим сумму на экран
+  document.getElementById('payAmount').textContent = formatPrice(totalSum) + ' ₸';
   
-  const qrImage = document.getElementById('kaspiQrImage');
-  if (qrImage) {
-    qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=KaspiPay_Amount_${totalAmount}_KZT`;
-  }
-
+  // Генерируем реальный QR код с текстом платежа (Сумма заказа)
+  const qrData = encodeURIComponent(`Nurzhan Restaurant. Table 5. Total Payment: ${totalSum} KZT`);
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${qrData}&color=d4a853&bgcolor=1a1814`;
+  
+  // Устанавливаем QR-код в тег картинки
+  document.getElementById('kaspiQrImage').src = qrCodeUrl;
+  
   document.getElementById('paymentOverlay').classList.add('active');
 }
 
@@ -258,22 +261,22 @@ function formatCard(input) {
 function confirmPayment() {
   const confirmBtn = document.querySelector('.pay-actions .order-btn');
   
-  // Батырманы уақытша бұғаттап, төлемді күтеміз
+  // Блокируем кнопку, меняем цвет на серый и пишем статус ожидания
   confirmBtn.disabled = true;
-  confirmBtn.style.background = '#8a8070'; // Күту түсі (сұр)
+  confirmBtn.style.background = '#8a8070'; 
   confirmBtn.innerText = '⌛ Төлем күтілуде (Checking...)';
   
-  // 3 секундтық тексеру имитациясы
+  // Имитируем банковскую задержку проверки транзакции (3 секунды)
   setTimeout(() => {
-    // Батырманы қалпына келтіреміз
+    // Возвращаем кнопку в исходное состояние
     confirmBtn.disabled = false;
     confirmBtn.style.background = 'var(--accent)';
-    confirmBtn.innerText = '✅ Растау';
+    confirmBtn.innerText = '✅ Төледім / Растау';
     
-    // Төлем сәтті өтті, келесі терезеге өтеміз
+    // Закрываем окно оплаты и открываем окно успешного чека
     document.getElementById('paymentOverlay').classList.remove('active');
     document.getElementById('paidOverlay').classList.add('active');
-  }, 3000); 
+  }, 3000); // 3000 миллисекунд = 3 секунды
 }
 
 // -------- RESET ALL --------
@@ -292,4 +295,8 @@ function resetAll() {
 // -------- HELPERS --------
 function formatPrice(n) {
   return n.toLocaleString('kk-KZ');
+}
+
+function closePayment() {
+  document.getElementById('paymentOverlay').classList.remove('active');
 }
