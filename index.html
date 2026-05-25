@@ -86,14 +86,13 @@
   </div>
 
   <!-- ======= PAYMENT MODAL ======= -->
-  <div class="modal-overlay" id="paymentOverlay">
-    <div class="modal payment-modal">
-      <h2>💳 Төлем</h2>
-      <p class="pay-amount">Төленетін сома: <strong id="payAmount">0 ₸</strong></p>
-      <div class="pay-methods">
-        <button class="pay-method active" onclick="selectPayMethod(this, 'card')">💳 Карта</button>
-        <button class="pay-method" onclick="selectPayMethod(this, 'kaspi')">📱 Kaspi QR</button>
-        <button class="pay-method" onclick="selectPayMethod(this, 'cash')">💵 Қолма-қол</button>
+<div class="modal-overlay" id="paymentOverlay">
+    <div class="modal-content">
+      <div class="modal-close" onclick="closePayment()">✕</div>
+      <h2>Тапсырысты растау</h2>
+      <div class="pay-total">
+        <span>Төленетін сома:</span>
+        <strong id="payAmount">0 ₸</strong>
       </div>
       <div id="cardForm" class="card-form">
         <input type="text" placeholder="Карта нөмірі" maxlength="19" id="cardNum" oninput="formatCard(this)" />
@@ -103,14 +102,11 @@
         </div>
         <input type="text" placeholder="Иесінің аты" />
       </div>
-      <div id="kaspiForm" class="kaspi-form" style="display:none">
-                <div class="qr-placeholder">
-                  <img id="kaspiQrImage" src="" alt="Kaspi QR" style="width: 160px; height: 160px; border-radius: 10px; border: 3px solid var(--accent); margin-bottom: 12px; display: inline-block;">
-                  <p>Kaspi QR-кодты сканерлеңіз</p>
-                </div>
-      </div>
-      <div id="cashForm" class="cash-form" style="display:none">
-        <p>Даяшыға қолма-қол төлемді растаңыз.</p>
+      <div id="kaspiForm" class="kaspi-form" style="display:flex; justify-content:center; margin: 20px 0;">
+        <div class="qr-placeholder" style="text-align: center;">
+          <img id="kaspiQrImage" src="" alt="Kaspi QR" style="width: 160px; height: 160px; border-radius: 10px; border: 3px solid var(--accent); margin-bottom: 12px; display: inline-block;">
+          <p style="color: var(--text-muted); font-size: 0.85rem;">Kaspi QR-кодты сканерлеңіз</p>
+        </div>
       </div>
       <div class="pay-actions">
         <button class="order-btn" onclick="confirmPayment()">✅ Растау</button>

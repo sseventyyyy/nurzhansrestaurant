@@ -256,35 +256,24 @@ function formatCard(input) {
 
 // -------- CONFIRM PAYMENT --------
 function confirmPayment() {
-  const confirmBtn = document.querySelector('.order-btn');
-  const activeMethod = document.querySelector('.pay-method.active');
+  const confirmBtn = document.querySelector('.pay-actions .order-btn');
   
-  // Егер клиент Kaspi QR арқылы төлеуді таңдаған болса
-  if (activeMethod && activeMethod.innerText.includes('Kaspi')) {
+  // Батырманы уақытша бұғаттап, төлемді күтеміз
+  confirmBtn.disabled = true;
+  confirmBtn.style.background = '#8a8070'; // Күту түсі (сұр)
+  confirmBtn.innerText = '⌛ Төлем күтілуде (Checking...)';
+  
+  // 3 секундтық тексеру имитациясы
+  setTimeout(() => {
+    // Батырманы қалпына келтіреміз
+    confirmBtn.disabled = false;
+    confirmBtn.style.background = 'var(--accent)';
+    confirmBtn.innerText = '✅ Растау';
     
-    // Батырманың мәтінін өзгертіп, оны басуды уақытша бұғаттаймыз (клиент күтеді)
-    confirmBtn.disabled = true;
-    confirmBtn.style.background = '#8a8070'; // Күту түсі (сұр)
-    confirmBtn.innerText = '⌛ Төлем күтілуде (Checking...)';
-    
-    // Нағыз өмірде бұл жерде банк серверінен жауап күтеді.
-    // Біз 3 секундтық имитация (күту) қосамыз:
-    setTimeout(() => {
-      // 3 секундтан кейін батырманы қалпына келтіріп, төлемді сәтті аяқтаймыз
-      confirmBtn.disabled = false;
-      confirmBtn.style.background = 'var(--accent)';
-      confirmBtn.innerText = '✅ Растау';
-      
-      // Төлем сәтті өтті, енді тапсырыс қабылданады
-      document.getElementById('paymentOverlay').classList.remove('active');
-      document.getElementById('paidOverlay').classList.add('active');
-    }, 3000); // 3000 миллисекунд = 3 секунд күту
-    
-  } else {
-    // Карта немесе қолма-қол ақша болса, бірден растала береді
+    // Төлем сәтті өтті, келесі терезеге өтеміз
     document.getElementById('paymentOverlay').classList.remove('active');
     document.getElementById('paidOverlay').classList.add('active');
-  }
+  }, 3000); 
 }
 
 // -------- RESET ALL --------
