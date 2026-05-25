@@ -68,7 +68,7 @@
       </div>
       <div class="cart-note">
         <label>Ескертпе:</label>
-        <textarea id="orderNote" placeholder="Мысалы: аз тұз, жай піскен..."></textarea>
+        <textarea id="orderNote" placeholder="Мысалы: тұзы азырақ болсын..."></textarea>
       </div>
       <button class="order-btn" onclick="placeOrder()">Тапсырыс беру</button>
     </div>
@@ -88,14 +88,14 @@
   <!-- ======= PAYMENT MODAL ======= -->
 <div class="modal-overlay" id="paymentOverlay">
     <div class="modal payment-modal">
-      <h2 style="text-align: center; font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 6px;">📱 Төлем Kaspi QR</h2>
+      <h2 style="text-align: center; font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 6px;">📱 Төлем Kaspi қосымшасы арқылы</h2>
       <p class="pay-amount" style="text-align: center; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
         Төленетін сома: <strong id="payAmount" style="color: var(--accent); font-size: 1.2rem;">0 ₸</strong>
       </p>
       <div id="cardForm" class="card-form">
         <input type="text" placeholder="Карта нөмірі" maxlength="19" id="cardNum" oninput="formatCard(this)" />
         <div class="pay-actions" style="display: flex; flex-direction: column; gap: 10px;">
-        <button class="order-btn" onclick="confirmPayment()">✅ Төледім / Растау</button>
+        <button class="order-btn" onclick="confirmPayment()">✅ Төледім</button>
         <button class="cancel-btn" onclick="closePayment()">Артқа</button>
       </div>
     </div>
@@ -105,7 +105,7 @@
       <div id="kaspiForm" class="kaspi-form" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
         <div class="qr-placeholder" style="text-align: center; padding: 10px;">
           <img id="kaspiQrImage" src="" alt="Kaspi QR" style="width: 180px; height: 180px; border: 3px solid var(--accent); border-radius: var(--radius-sm); margin: 0 auto 12px; display: block;" />
-          <p style="color: var(--text-muted); font-size: 0.85rem;">Төлем жасау үшін Kaspi қосымшасымен QR-кодты сканерлеңіз</p>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">Төлем жасау үшін Kaspi қосымшасын ашып карточкаңызды жазыңыз</p>
         </div>
       </div>
       </div>

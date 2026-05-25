@@ -13,23 +13,23 @@ const menuItems = [
   // СОРПАЛАР
   { id: 4, name: "Қазақша сорпа", desc: "Мал еті, картоп, пияз, дәмдеуіштер", price: 2000, category: "soup", emoji: "🍲", tags: ["hot"] },
   { id: 5, name: "Борщ", desc: "Сиыр еті, қызылша, қырыққабат, бал қаймақ", price: 1800, category: "soup", emoji: "🥣", tags: ["hot"] },
-  { id: 6, name: "Шорпа", desc: "Қой еті, жылқы еті, картоп, шөп", price: 2400, category: "soup", emoji: "🍜", tags: ["hot"] },
+  { id: 6, name: "Сорпа", desc: "Қой еті, жылқы еті, картоп, шөп", price: 2400, category: "soup", emoji: "🍜", tags: ["hot"] },
 
   // НЕГІЗГІ
   { id: 7, name: "Бешбармақ", desc: "Қой еті, жылқы еті, жуа пиязы, жалпақ кеспе", price: 5500, category: "main", emoji: "🍖", tags: ["hot"] },
   { id: 8, name: "Манты", desc: "Қой еті толтырылған бумен пісірілген тесте", price: 3200, category: "main", emoji: "🥟", tags: ["hot"] },
   { id: 9, name: "Стейк", desc: "Сиыр еті стейкі, картоп пюресі, гарнир", price: 8900, category: "main", emoji: "🥩", tags: ["hot"] },
-  { id: 10, name: "Пилав", desc: "Қой еті, сәбіз, пияз, дәмдеуіштер", price: 3800, category: "main", emoji: "🍚", tags: [] },
+  { id: 10, name: "Палау", desc: "Қой еті, сәбіз, пияз, дәмдеуіштер", price: 3800, category: "main", emoji: "🍚", tags: [] },
   { id: 11, name: "Лагман", desc: "Тартылған ет, көкөніс, қол жасалған кеспе", price: 3000, category: "main", emoji: "🍝", tags: ["hot"] },
 
   // ДЕСЕРТ
-  { id: 12, name: "Шақпақ баурсақ", desc: "Дәстүрлі қазақ тәтті нан, бал мен қаймақпен", price: 1200, category: "dessert", emoji: "🍩", tags: [] },
+  { id: 12, name: "Бауырсақ", desc: "Дәстүрлі қазақ тәтті нан, бал мен қаймақпен", price: 1200, category: "dessert", emoji: "🍩", tags: [] },
   { id: 13, name: "Чизкейк", desc: "Нью-Йорк стиліндегі чизкейк, жидек жамылғысымен", price: 2100, category: "dessert", emoji: "🍰", tags: ["veg"] },
   { id: 14, name: "Шоколад торт", desc: "Бельгия шоколады, креммен безендірілген", price: 2400, category: "dessert", emoji: "🎂", tags: ["veg"] },
 
   // СУСЫНДАР
   { id: 15, name: "Қымыз", desc: "Дәстүрлі биенің сүтінен дайындалған", price: 900, category: "drink", emoji: "🥛", tags: ["veg"] },
-  { id: 16, name: "Шай (Қара/Жасыл)", desc: "Дәстүрлі шәйнекте, сүтпен немесе тазалай", price: 600, category: "drink", emoji: "🍵", tags: ["veg"] },
+  { id: 16, name: "Шай (Қара/Жасыл)", desc: "Дәстүрлі шәйнекте, сүтпен немесе кок шәй", price: 600, category: "drink", emoji: "🍵", tags: ["veg"] },
   { id: 17, name: "Лимонад", desc: "Лимон, нане, газдалған су, мұзды", price: 1100, category: "drink", emoji: "🍋", tags: ["veg"] },
   { id: 18, name: "Кофе (Капучино)", desc: "Эспрессо, бу сүті, сүт köбігі", price: 1400, category: "drink", emoji: "☕", tags: [] },
 ];
