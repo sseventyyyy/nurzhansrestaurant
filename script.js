@@ -226,7 +226,15 @@ function placeOrder() {
 // -------- SHOW PAYMENT --------
 function showPayment() {
   document.getElementById('modalOverlay').classList.remove('active');
-  document.getElementById('payAmount').textContent = formatPrice(getTotal()) + ' ₸';
+  
+  const totalAmount = getTotal();
+  document.getElementById('payAmount').textContent = formatPrice(totalAmount) + ' ₸';
+  
+  const qrImage = document.getElementById('kaspiQrImage');
+  if (qrImage) {
+    qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=KaspiPay_Amount_${totalAmount}_KZT`;
+  }
+
   document.getElementById('paymentOverlay').classList.add('active');
 }
 
